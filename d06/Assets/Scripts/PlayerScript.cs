@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
+    private Vector3 movement;
+    private Vector3 direction;
+    public float rotationSpeed = 1;
+    public float speed = 0.1f;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+        movement = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")) * speed;
+        gameObject.transform.Translate(movement);
+
+        direction = new Vector3(0, Input.GetAxis("Mouse X"), 0f) * rotationSpeed;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + direction);
 	}
 }
