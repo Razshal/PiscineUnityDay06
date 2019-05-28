@@ -46,6 +46,7 @@ public class SliderScript : MonoBehaviour {
             alarmPlaying = false;
             alarm.Stop();
             PlaySound(ambientNormal);
+            playerScript.SetHint("Probably just a rat ...");
         }
         if (slider.value >= 100)
         {
