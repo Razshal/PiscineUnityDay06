@@ -2094,6 +2094,31 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198945640877722638, guid: 08c54e07d29ba4a3fa98849ffdc08240,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198945640877722638, guid: 08c54e07d29ba4a3fa98849ffdc08240,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198945640877722638, guid: 08c54e07d29ba4a3fa98849ffdc08240,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198945640877722638, guid: 08c54e07d29ba4a3fa98849ffdc08240,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198945640877722638, guid: 08c54e07d29ba4a3fa98849ffdc08240,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08c54e07d29ba4a3fa98849ffdc08240, type: 2}
   m_IsPrefabParent: 0
@@ -2862,7 +2887,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838459489}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.2805, y: 3.68, z: -3.39}
+  m_LocalPosition: {x: 3.2805, y: 2.688, z: -3.39}
   m_LocalScale: {x: 0.02000001, y: 0.19999999, z: 0.02000001}
   m_Children: []
   m_Father: {fileID: 1717729408}
