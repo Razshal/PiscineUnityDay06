@@ -52,9 +52,5 @@ public class SliderScript : MonoBehaviour {
     {
         if (!isIncreased && slider.value > slider.minValue)
             IncreaseDetection(-decraseValue);
-
-        if (Input.GetKey(KeyCode.LeftShift)
-            && (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0))
-            IncreaseDetection(0.5f);
     }
 }

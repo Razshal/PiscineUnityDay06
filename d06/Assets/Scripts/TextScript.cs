@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TextScript : MonoBehaviour {
-    private int alpha = 255;
     private Color color = Color.white;
     private bool touched = false;
     private TextMesh textMesh;
