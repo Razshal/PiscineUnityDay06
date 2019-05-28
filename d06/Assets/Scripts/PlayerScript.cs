@@ -11,11 +11,15 @@ public class PlayerScript : MonoBehaviour {
     public int multiplier = 2;
     public bool hasTheKey = false;
     public AudioClip key;
+    public AudioClip run;
+    public AudioClip restart;
     private AudioSource audioSource;
     private SliderScript sliderScript;
+    private bool isRunningSound = false;
 
-    void PlaySound(AudioClip clip)
+    void PlaySound(AudioClip clip, bool loop = false)
     {
+        audioSource.loop = loop;
         audioSource.Stop();
         audioSource.clip = clip;
         audioSource.Play();
@@ -33,18 +37,25 @@ public class PlayerScript : MonoBehaviour {
         sliderScript = GameObject.Find("Slider").GetComponent<SliderScript>();
 	}
 
+    private void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 	private void OnCollisionEnter(Collision collision)
 	{
         if (collision.gameObject.tag == "Key")
         {
 			hasTheKey = true;
             Destroy(collision.gameObject);
+            isRunningSound = false;
             PlaySound(key);
         }
         if (collision.gameObject.tag == "Objective")
         {
             Destroy(collision.gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            PlaySound(restart);
+            Invoke("Reload", 4.3f);
         }
 	}
 
@@ -56,6 +67,20 @@ public class PlayerScript : MonoBehaviour {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + direction);
 
         if (IsRuning())
-            sliderScript.IncreaseDetection(0.5f);
+        {
+			sliderScript.IncreaseDetection(0.5f);
+            if (!isRunningSound)
+            {
+                isRunningSound = true;
+                audioSource.loop = true;
+                PlaySound(run, true);
+            }
+        }
+        if (isRunningSound && !IsRuning())
+        {
+            isRunningSound = false;
+            audioSource.Stop();
+        }
+
 	}
 }
