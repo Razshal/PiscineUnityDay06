@@ -6,19 +6,25 @@ public class TextScript : MonoBehaviour {
     private int alpha = 255;
     private Color color = Color.white;
     private bool touched = false;
+    private TextMesh textMesh;
 
-    private void OnTriggerEnter(Collider other)
+	private void Start()
+	{
+        textMesh = gameObject.GetComponent<TextMesh>();
+	}
+
+	private void OnTriggerEnter(Collider other)
     {
         touched = true;
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 7f);
     }
 
     private void FixedUpdate()
     {
         if (touched)
         {
-            color.a -= 0.01f;
-            gameObject.GetComponent<TextMesh>().color = color;
+            color.a -= 0.005f;
+            textMesh.color = color;
         }
     }
 }
