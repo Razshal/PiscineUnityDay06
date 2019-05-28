@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Key
   - Objective
+  - Detection
+  - Fan
+  - Door
   layers:
   - Default
   - TransparentFX

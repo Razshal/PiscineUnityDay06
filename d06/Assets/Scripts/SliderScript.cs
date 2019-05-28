@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SliderScript : MonoBehaviour {
@@ -13,12 +12,15 @@ public class SliderScript : MonoBehaviour {
     public AudioClip ambientNormal;
     public AudioClip ambientAlert;
     private bool alarmPlaying = false;
+    private PlayerScript playerScript;
+
 
     // Use this for initialization
     void Start () {
         slider = gameObject.GetComponent<Slider>();
         uiAudioSource = gameObject.GetComponent<AudioSource>();
         PlaySound(ambientNormal);
+        playerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
     }
 
     void PlaySound(AudioClip clip)
@@ -37,6 +39,7 @@ public class SliderScript : MonoBehaviour {
             alarmPlaying = true;
             alarm.Play();
             PlaySound(ambientAlert);
+            playerScript.SetHint("ALERT");
         }
         if (alarmPlaying && slider.value < 75)
         {
@@ -45,7 +48,10 @@ public class SliderScript : MonoBehaviour {
             PlaySound(ambientNormal);
         }
         if (slider.value >= 100)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        {
+            playerScript.SetHint("Yo loose ...");
+            playerScript.Reload();
+        }
     }
 
     private void Update()
