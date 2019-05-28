@@ -64,4 +64,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424d85c43e09f482885fdd4d7e0f3e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionZoneValue: 0.1
+  detectionZoneValue: 0.2
