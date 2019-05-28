@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour {
     public float rotationSpeed = 1;
     public float speed = 0.1f;
     public int multiplier = 2;
+    public bool gotTheKey = false;
 
 	// Use this for initialization
 	void Start () {
