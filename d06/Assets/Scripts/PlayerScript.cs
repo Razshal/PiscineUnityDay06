@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour {
     private Vector3 direction;
     public float rotationSpeed = 1;
     public float speed = 0.1f;
+    public int multiplier = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-        movement = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")) * speed;
+        movement = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")) * speed * (Input.GetKey(KeyCode.LeftShift) ? multiplier : 1);
         gameObject.transform.Translate(movement);
 
         direction = new Vector3(0, Input.GetAxis("Mouse X"), 0f) * rotationSpeed;

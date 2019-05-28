@@ -8,10 +8,10 @@ public class SliderScript : MonoBehaviour {
     public bool isIncreased;
     public float decraseValue = 0.1f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         slider = gameObject.GetComponent<Slider>();
-	}
+    }
 
     public void IncreaseDetection(float val)
     {
@@ -19,9 +19,13 @@ public class SliderScript : MonoBehaviour {
             slider.value += val;
     }
 
-	private void Update()
-	{
+    private void Update()
+    {
         if (!isIncreased && slider.value > slider.minValue)
             slider.value -= decraseValue;
-	}
+
+        if (Input.GetKey(KeyCode.LeftShift)
+            && (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0))
+            IncreaseDetection(0.5f);
+    }
 }
