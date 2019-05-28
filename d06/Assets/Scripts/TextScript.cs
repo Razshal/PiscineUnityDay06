@@ -13,7 +13,7 @@ public class TextScript : MonoBehaviour {
         Destroy(gameObject, 5f);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (touched)
         {

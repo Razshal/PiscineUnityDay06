@@ -8,13 +8,17 @@ public class PlayerScript : MonoBehaviour {
     public float rotationSpeed = 1;
     public float speed = 0.1f;
     public int multiplier = 2;
-    public bool gotTheKey = false;
+    public bool hasTheKey = false;
 
-	// Use this for initialization
-	void Start () {
-		
+	private void OnCollisionEnter(Collision collision)
+	{
+        if (collision.gameObject.tag == "Key")
+        {
+			hasTheKey = true;
+            Destroy(collision.gameObject);
+        }
 	}
-	
+
 	void FixedUpdate () {
         movement = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")) * speed * (Input.GetKey(KeyCode.LeftShift) ? multiplier : 1);
         gameObject.transform.Translate(movement);
