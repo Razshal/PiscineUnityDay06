@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TextScript : MonoBehaviour {
+public class TextScript : MonoBehaviour
+{
     private Color color = Color.white;
     private bool touched = false;
     private TextMesh textMesh;
 
-	private void Start()
-	{
+    private void Start()
+    {
         textMesh = gameObject.GetComponent<TextMesh>();
-	}
+    }
 
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         touched = true;
         Destroy(gameObject, 7f);

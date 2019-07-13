@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour
+{
     private Vector3 movement;
     private Vector3 direction;
     public float rotationSpeed = 1;
@@ -21,6 +20,14 @@ public class PlayerScript : MonoBehaviour {
     private Text hints;
     private Color color = Color.white;
 
+    private void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        sliderScript = GameObject.Find("Slider").GetComponent<SliderScript>();
+        hints = GameObject.Find("Hints").GetComponent<Text>();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void PlaySound(AudioClip clip, bool loop = false)
     {
         audioSource.loop = loop;
@@ -31,27 +38,20 @@ public class PlayerScript : MonoBehaviour {
 
     private bool IsRuning()
     {
-        return Input.GetKey(KeyCode.LeftShift) 
+        return Input.GetKey(KeyCode.LeftShift)
                     && (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0);
     }
-
-	private void Start()
-	{
-        audioSource = gameObject.GetComponent<AudioSource>();
-        sliderScript = GameObject.Find("Slider").GetComponent<SliderScript>();
-        hints = GameObject.Find("Hints").GetComponent<Text>();
-	}
 
     public void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-	private void OnCollisionEnter(Collision collision)
-	{
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Key")
         {
-			hasTheKey = true;
+            hasTheKey = true;
             Destroy(collision.gameObject);
             isRunningSound = false;
             PlaySound(key);
@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour {
             congrats.SetActive(true);
             SetHint("You Win !");
         }
-	}
+    }
 
     public void SetHint(string text)
     {
@@ -74,8 +74,8 @@ public class PlayerScript : MonoBehaviour {
         hints.color = color;
     }
 
-	private void OnTriggerEnter(Collider other)
-	{
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.CompareTag("Fan"))
             SetHint("Press E to activate");
         if (other.gameObject.CompareTag("Detection"))
@@ -84,9 +84,10 @@ public class PlayerScript : MonoBehaviour {
             SetHint("You need a key");
         if (other.gameObject.CompareTag("Door") && hasTheKey)
             SetHint("Door opened, get the map !");
-	}
+    }
 
-	void FixedUpdate () {
+    void FixedUpdate()
+    {
         movement = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")) * speed * (Input.GetKey(KeyCode.LeftShift) ? multiplier : 1);
         gameObject.transform.Translate(movement);
 
@@ -95,7 +96,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (IsRuning())
         {
-			sliderScript.IncreaseDetection(0.5f);
+            sliderScript.IncreaseDetection(0.5f);
             if (!isRunningSound)
             {
                 isRunningSound = true;
@@ -113,5 +114,5 @@ public class PlayerScript : MonoBehaviour {
             color.a -= 0.005f;
             hints.color = color;
         }
-	}
+    }
 }

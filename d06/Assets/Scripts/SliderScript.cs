@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderScript : MonoBehaviour {
+public class SliderScript : MonoBehaviour
+{
     private Slider slider;
     public bool isIncreased;
     public float decraseValue = 0.1f;
@@ -14,9 +13,8 @@ public class SliderScript : MonoBehaviour {
     private bool alarmPlaying = false;
     private PlayerScript playerScript;
 
-
-    // Use this for initialization
-    void Start () {
+    void Start()
+    {
         slider = gameObject.GetComponent<Slider>();
         uiAudioSource = gameObject.GetComponent<AudioSource>();
         PlaySound(ambientNormal);
